@@ -33,35 +33,20 @@ RUN dpkg --add-architecture i386 && \
     apt-get -y install ${ADDITIONAL_DISTRO_PACKAGES} && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-
-# Install Wrattler Dependencies
-USER root
-RUN apt-get -y update --fix-missing && \
-    apt-get -y install curl gnupg && \
-    # Install Node.js and npm
-    curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
-    apt-get -y install nodejs && \
-    # clean
-    apt-get clean && rm -rf /var/lib/apt/lists/*
-
-
-
     
 # Install additional system dependencies required for Wrattler
 USER root
 RUN apt-get -y update --fix-missing && \
     apt-get -y install curl gnupg build-essential git python3 python3-pip && \
-    # Install Node.js (if Wrattler requires Node.js)
+    # Install Node.js (if Wrattler requires Node.js, I think it needs)
     curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get -y install nodejs && \
     # Clean up
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Clone and install Wrattler
-# Replace the following with actual steps to clone and set up Wrattler
 RUN git clone https://github.com/wrattler/wrattler.git /opt/wrattler && \
     cd /opt/wrattler && \
-    # Add build/installation commands here
     ./build_release.sh
 
 
