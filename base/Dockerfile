@@ -62,7 +62,7 @@ RUN apt-get -y update --fix-missing && \
 RUN git clone https://github.com/wrattler/wrattler.git /opt/wrattler && \
     cd /opt/wrattler && \
     # Add build/installation commands here
-    ./build_script.sh # Replace with actual build command
+    ./build_release.sh
 
 
 
